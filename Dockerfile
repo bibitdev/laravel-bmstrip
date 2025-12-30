@@ -8,8 +8,14 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libzip-dev \
     libicu-dev \
+    # Perlu gnupg untuk nodejs setup 
+    gnupg \
     && docker-php-ext-configure intl \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip intl
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
