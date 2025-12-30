@@ -42,5 +42,17 @@ php artisan cache:clear
 echo "Membuat Symbolic Link untuk Storage..."
 php artisan storage:link
 
+# Setup Frontend (NPM)
+if [ -f "package.json" ]; then
+    echo "Menginstall dependency Node.js..."
+    npm install
+    
+    echo "Melakukan build assets (Vite)..."
+    npm run build
+fi
+
+echo " Setup Selesai! Server PHP-FPM berjalan."
+exec php-fpm
+
 echo " Setup Selesai! Server PHP-FPM berjalan."
 exec php-fpm
