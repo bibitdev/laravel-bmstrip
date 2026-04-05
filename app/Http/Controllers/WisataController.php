@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Wisata;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class WisataController extends Controller
         $wisatas = $query->paginate(9);
 
         // Get categories for sidebar
-        $categories = \App\Models\Category::all();
+        $categories = Category::all();
 
         return view('wisata.index', compact('wisatas', 'categories'));
     }
